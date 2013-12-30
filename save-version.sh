@@ -1,7 +1,6 @@
 #!/bin/bash
 set -eu
 
-PA_DIR=`cygpath 'C:\Program Files (x86)\Steam\steamapps\common\Planetary Annihilation'`
 TARGET_DIR="../pa-versions"
 
 function json-reformat() {
@@ -17,7 +16,7 @@ if [ ! -d "$TARGET_DIR" ]; then
 fi
 
 SAVED_VERSION=`cat "$TARGET_DIR/version.txt"`
-CURRENT_VERSION=`cat "$PA_DIR/version.txt"`
+CURRENT_VERSION=`cat "$PA_HOME/version.txt"`
 
 # Has a new version been released?
 if [ "$SAVED_VERSION" = "$CURRENT_VERSION" ]; then
@@ -38,7 +37,7 @@ rsync --verbose --archive --prune-empty-dirs \
 	--include='*.css' \
 	--include='*.ini' \
 	--filter='hide,! */' \
-	"$PA_DIR/" .
+	"$PA_HOME/" .
 for path in `find . -name '*.json'`; do
     echo "Reformatting $path"
     json-reformat "$path"
