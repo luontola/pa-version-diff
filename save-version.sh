@@ -2,6 +2,7 @@
 set -eu
 
 TARGET_DIR="../pa-versions"
+PA_HOME=`cygpath "$PA_HOME"`
 
 function json-reformat() {
     local file="$1"
