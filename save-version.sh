@@ -43,5 +43,8 @@ for path in `find . -name '*.json'`; do
     echo "Reformatting $path"
     json-reformat "$path"
 done
+set -x
+git status
 git add -A
 git commit -m "v.$CURRENT_VERSION"
+git status
